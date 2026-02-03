@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Encabezado de la página -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 mb-3">
+            <i class="fas fa-bullhorn text-danger"></i> Voces de la Comunidad
+        </h1>
+        <p class="lead text-muted">
+            Problemas reportados por ciudadanos que necesitan atención
+        </p>
+        <div class="divider"></div>
+    </div>
+    
+    <!-- Lista de publicaciones -->
+    <div class="row">
+        {% for post in posts %}
+            <div class="col-12 mb-4">
+                <div class="card border-danger shadow-custom">
+                    <div class="card-body">
+                        <!-- Título del problema -->
+                        <h2 class="card-title text-danger">
+                            <i class="fas fa-exclamation-triangle"></i> {{ post.title }}
+                        </h2>
+                        
+                        <!-- Información del autor y fecha -->
+                        <h6 class="card-subtitle mb-3 text-muted">
+                            <i class="fas fa-user-circle"></i> Por <strong>{{ post.autor.username }}</strong>
+                            <span class="mx-2">•</span>
+                            <i class="fas fa-calendar-alt"></i> {{ post.date_posted.strftime('%d/%m/%Y') }}
+                        </h6>
+                        
+                        <!-- Contenido del problema -->
+                        <p class="card-text fs-6 mb-4">{{ post.content }}</p>
+                        
+                        <hr class="my-3">
+                        
+                        <!-- Categoría y botón de contacto -->
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+                            <!-- Badge de urgencia -->
+                            <span class="badge bg-warning text-dark">
+                                <i class="fas fa-fire"></i> Urgente / Social
+                            </span>
+                            
+                            <!-- Botón de WhatsApp -->
+                            <a href="https://api.whatsapp.com/send?phone={{ post.contact_info|replace('+', '')|replace(' ', '') }}&text=Hola, vi tu publicación en La Voz Paraguay sobre: {{ post.title }}" 
+                               target="_blank" 
+                               class="btn btn-success btn-sm">
+                                <i class="fab fa-whatsapp"></i> Ayudar / Contactar: {{ post.contact_info }}
+                            </a>
+                        </div>
+
+                        <!-- Botones de administración (solo para autor o admin) -->
+                        {% if current_user.is_authenticated and (post.autor == current_user or current_user.role == 'admin') %}
+                            <div class="mt-4 pt-3 border-top">
+                                <small class="text-muted d-block mb-3">
+                                    <i class="fas fa-cog"></i> <strong>Gestionar publicación:</strong>
+                                </small>
+                                
+                                <div class="d-flex flex-column flex-md-row gap-2">
+                                    <!-- Botón editar -->
+                                    <a href="{{ url_for('main.update_post', post_id=post.id_post) }}" 
+                                       class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </a>
+                                    
+                                    <!-- Botón borrar -->
+                                    <form action="{{ url_for('main.delete_post', post_id=post.id_post) }}" 
+                                          method="POST" 
+                                          class="d-inline w-100 w-md-auto">
+                                        <button type="submit" 
+                                                class="btn btn-sm btn-outline-danger w-100" 
+                                                onclick="return confirm('¿Seguro que querés borrar esta denuncia? Esta acción no se puede deshacer.')">
+                                            <i class="fas fa-trash-alt"></i> Borrar
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <!-- Mensaje cuando no hay publicaciones -->
+            <div class="col-12">
+                <div class="alert alert-info shadow-custom text-center py-5">
+                    <i class="fas fa-info-circle fa-3x mb-3 text-info"></i>
+                    <h4 class="mb-3">Aún no hay voces registradas</h4>
+                    <p class="mb-4">Sé el primero en hablar por los que no tienen voz. Comparte un problema de tu comunidad.</p>
+                    
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('main.new_post') }}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-bullhorn"></i> Publicar un Problema
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('main.register') }}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-user-plus"></i> Registrarse para Publicar
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Botón flotante para crear nueva publicación (opcional) -->
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('main.new_post') }}" 
+           class="btn btn-danger rounded-circle position-fixed bottom-0 end-0 m-4 shadow-lg" 
+           style="width: 60px; height: 60px; z-index: 999;"
+           title="Publicar nuevo problema">
+            <i class="fas fa-plus fa-lg"></i>
+        </a>
+    {% endif %}
+
+{% endblock %}
