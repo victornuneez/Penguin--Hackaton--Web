@@ -15,7 +15,7 @@ class Rol(db.Model):
     descripcion = Column(String(30), nullable=False)
 
     # Relacion con la tabla usuario
-    usuario = relationship('usuario', back_populates='rol')
+    usuario = relationship('Usuario', back_populates='rol')
 
 class Usuario(db.Model, UserMixin):
     # Nombre de la tabla
@@ -24,12 +24,11 @@ class Usuario(db.Model, UserMixin):
     # Columnas de la tabla usuario
     id_usuario = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String(20), nullable=False, unique=True)
-    nombre_apellido = Column(String(120), nullable=False)
-    password = Column(String(20), nullable=False)
     email = Column(String(120), nullable=False)
-
+    password = Column(String(128), nullable=False)
+    
     # Clave foranea hacia la tabla rol
-    id_rol = Column(Integer, ForeignKey('rol.id_rol'), nullable=False)
+    id_rol = Column(Integer, ForeignKey('rol.id_rol'), default=2)
 
     # Relaciones con las tablas rol y post
     rol = relationship('Rol', back_populates='usuario')
