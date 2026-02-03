@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">🛠️ Panel de Administración</h1>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-primary text-white shadow">
+                <div class="card-body text-center">
+                    <h5>Usuarios Registrados</h5>
+                    <h2 class="display-4">{{ usuarios|length }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-danger text-white shadow">
+                <div class="card-body text-center">
+                    <h5>Total de Denuncias</h5>
+                    <h2 class="display-4">{{ total_posts }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Gestión de Usuarios</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre de Usuario</th>
+                        <th>Correo Electrónico</th>
+                        <th>Rol</th>
+                        <th>Acciones</th> </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{ usuario.id }}</td>
+                        <td><strong>{{ usuario.username }}</strong></td>
+                        <td>{{ usuario.email }}</td>
+                        <td>
+                            {% if usuario.role == 'admin' %}
+                                <span class="badge bg-danger">Administrador</span>
+                            {% else %}
+                                <span class="badge bg-info">Ciudadano</span>
+                            {% endif %}
+                        </td>
+                        
+                        <td>
+                            {% if usuario.id != current_user.id %}
+                            <div class="d-flex gap-2">
+                                <form action="{{ url_for('main.cambiar_rol', user_id=usuario.id) }}" method="POST">
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary">
+                                        {% if usuario.role == 'admin' %} ⬇️ Ciudadano {% else %} ⬆️ Admin {% endif %}
+                                    </button>
+                                </form>
+
+                                <form action="{{ url_for('main.eliminar_usuario', user_id=usuario.id) }}" method="POST">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" 
+                                            onclick="return confirm('¿Estás SEGURO de eliminar a este usuario? Se perderán todos sus datos.')">
+                                        🗑️ Eliminar
+                                    </button>
+                                </form>
+                            </div>
+                            {% else %}
+                                <small class="text-muted">Eres tú (Sin acciones)</small>
+                            {% endif %}
+                        </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
