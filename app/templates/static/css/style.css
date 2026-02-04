@@ -1,0 +1,448 @@
+/* ================================================
+   LA VOZ PARAGUAY - ESTILOS PERSONALIZADOS
+   Diseño moderno y minimalista
+   ================================================ */
+
+/* Variables de color - Colores de la bandera paraguaya */
+:root {
+    --color-rojo: #D52B1E;
+    --color-azul: #0038A8;
+    --color-blanco: #FFFFFF;
+    --color-gris-claro: #F8F9FA;
+    --color-gris-medio: #6C757D;
+    --color-gris-oscuro: #212529;
+    --sombra-suave: 0 2px 10px rgba(0, 0, 0, 0.08);
+    --sombra-media: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Reset y configuración general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-gris-claro);
+    color: var(--color-gris-oscuro);
+    line-height: 1.6;
+}
+
+/* ================================================
+   NAVBAR MEJORADA - MODERNA Y RESPONSIVE
+   ================================================ */
+
+.navbar-custom {
+    background: linear-gradient(135deg, var(--color-azul) 0%, #0052cc 100%);
+    box-shadow: var(--sombra-media);
+    padding: 0.8rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--color-blanco) !important;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.logo-navbar {
+    height: 45px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem !important;
+    margin: 0 0.2rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--color-blanco) !important;
+    transform: translateY(-2px);
+}
+
+.navbar-nav .nav-link.text-warning {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #ffc107 !important;
+}
+
+.navbar-nav .nav-link.text-warning:hover {
+    background-color: rgba(255, 193, 7, 0.3);
+}
+
+/* Botón hamburguesa personalizado */
+.navbar-toggler {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggler:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--color-blanco);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ================================================
+   CARDS Y CONTENIDO
+   ================================================ */
+
+.card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: var(--color-blanco);
+}
+
+.card:hover {
+    box-shadow: var(--sombra-media);
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--color-gris-oscuro) 0%, #343a40 100%);
+    color: var(--color-blanco);
+    border: none;
+    padding: 1.2rem 1.5rem;
+    font-weight: 600;
+}
+
+.card.border-danger {
+    border-left: 4px solid var(--color-rojo) !important;
+}
+
+.card-title.text-danger {
+    color: var(--color-rojo) !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+/* ================================================
+   BOTONES MODERNOS
+   ================================================ */
+
+.btn {
+    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-azul) 0%, #0052cc 100%);
+    box-shadow: 0 4px 12px rgba(0, 56, 168, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0052cc 0%, var(--color-azul) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 56, 168, 0.4);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(40, 167, 69, 0.4);
+}
+
+.btn-danger,
+.btn-outline-danger {
+    background: linear-gradient(135deg, var(--color-rojo) 0%, #c82333 100%);
+    color: var(--color-blanco);
+    box-shadow: 0 4px 12px rgba(213, 43, 30, 0.3);
+}
+
+.btn-outline-danger {
+    background: transparent;
+    border: 2px solid var(--color-rojo);
+    color: var(--color-rojo);
+}
+
+.btn-outline-danger:hover {
+    background: linear-gradient(135deg, var(--color-rojo) 0%, #c82333 100%);
+    color: var(--color-blanco);
+    transform: translateY(-2px);
+}
+
+/* ================================================
+   BADGES Y ETIQUETAS
+   ================================================ */
+
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.badge.bg-warning {
+    background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%) !important;
+    color: var(--color-gris-oscuro) !important;
+}
+
+.badge.bg-danger {
+    background: linear-gradient(135deg, var(--color-rojo) 0%, #c82333 100%) !important;
+}
+
+.badge.bg-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%) !important;
+}
+
+/* ================================================
+   FORMULARIOS
+   ================================================ */
+
+.form-control,
+.form-select {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--color-azul);
+    box-shadow: 0 0 0 0.2rem rgba(0, 56, 168, 0.15);
+    outline: none;
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--color-gris-oscuro);
+    margin-bottom: 0.5rem;
+}
+
+/* ================================================
+   ALERTAS
+   ================================================ */
+
+.alert {
+    border: none;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid;
+    box-shadow: var(--sombra-suave);
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-left-color: #28a745;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-left-color: var(--color-rojo);
+    color: #721c24;
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    border-left-color: #17a2b8;
+    color: #0c5460;
+}
+
+/* ================================================
+   TABLAS
+   ================================================ */
+
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead {
+    background: linear-gradient(135deg, var(--color-gris-claro) 0%, #e9ecef 100%);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 56, 168, 0.05);
+    cursor: pointer;
+}
+
+/* ================================================
+   TÍTULOS Y TEXTOS
+   ================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: var(--color-gris-oscuro);
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--color-azul) 0%, var(--color-rojo) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ================================================
+   RESPONSIVE - MÓVILES
+   ================================================ */
+
+@media (max-width: 991px) {
+    /* Navbar en móvil */
+    .navbar-nav {
+        padding: 1rem 0;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        margin-top: 1rem;
+    }
+    
+    .navbar-nav .nav-link {
+        margin: 0.3rem 0;
+        text-align: center;
+    }
+    
+    .logo-navbar {
+        height: 40px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Ajustes para tablets */
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .d-flex.gap-2 {
+        flex-direction: column;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Ajustes para móviles pequeños */
+    .container {
+        padding: 0 15px;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .logo-navbar {
+        height: 35px;
+    }
+    
+    h1 {
+        font-size: 1.4rem;
+    }
+    
+    .card-title.text-danger {
+        font-size: 1.2rem;
+    }
+}
+
+/* ================================================
+   ANIMACIONES SUAVES
+   ================================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* ================================================
+   UTILIDADES PERSONALIZADAS
+   ================================================ */
+
+.shadow-custom {
+    box-shadow: var(--sombra-media) !important;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--color-azul) 0%, var(--color-rojo) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-azul), transparent);
+    margin: 2rem 0;
+}
