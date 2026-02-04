@@ -51,11 +51,15 @@
                             <i class="fas fa-lock text-primary"></i> 
                             <strong>Contraseña</strong>
                         </label>
+                        <!--Solucion al problema de anhadir contrasenhas con letras en iphone-->
                         <input type="password" 
-                               name="password" 
+                               name="password"
+                               id="password" 
                                class="form-control form-control-lg" 
                                placeholder="Mínimo 6 caracteres"
                                minlength="6"
+                               autocomplete="new-password"
+                               inputmode="text"
                                required>
                         <small class="text-muted">Usa una contraseña segura (mínimo 6 caracteres)</small>
                     </div>
