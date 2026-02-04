@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card shadow-custom">
+            <div class="text-center py-4">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" 
+                     alt="Logo" 
+                     style="height: 60px; margin-bottom: 15px;">
+                <h3 class="mb-0">Únete a La Voz Paraguay</h3>
+                <p class="text-muted mb-0 small">Crea tu cuenta y comienza a visibilizar problemas</p>
+            </div>
+
+            <div class="card-body p-4 p-md-5">
+                <form method="POST">
+                    <!-- Nombre de usuario -->
+                    <div class="mb-4">
+                        <label class="form-label">
+                            <i class="fas fa-user text-primary"></i> 
+                            <strong>Nombre de usuario</strong>
+                        </label>
+                        <input type="text" 
+                               name="username" 
+                               class="form-control form-control-lg" 
+                               placeholder="Ej: JuanPerez"
+                               pattern="[A-Za-z0-9_]{3,20}"
+                               title="Solo letras, números y guión bajo (3-20 caracteres)"
+                               required
+                               autofocus>
+                        <small class="text-muted">Sin espacios, 3-20 caracteres</small>
+                    </div>
+
+                    <!-- Correo Electrónico -->
+                    <div class="mb-4">
+                        <label class="form-label">
+                            <i class="fas fa-envelope text-primary"></i> 
+                            <strong>Correo Electrónico</strong>
+                        </label>
+                        <input type="email" 
+                               name="email" 
+                               class="form-control form-control-lg" 
+                               placeholder="nombre@ejemplo.com"
+                               required>
+                        <small class="text-muted">Usaremos este email para notificaciones importantes</small>
+                    </div>
+
+                    <!-- Contraseña -->
+                    <div class="mb-4">
+                        <label class="form-label">
+                            <i class="fas fa-lock text-primary"></i> 
+                            <strong>Contraseña</strong>
+                        </label>
+                        <!--Solucion al problema de anhadir contrasenhas con letras en iphone-->
+                        <input type="password" 
+                               name="password"
+                               id="password" 
+                               class="form-control form-control-lg" 
+                               placeholder="Mínimo 6 caracteres"
+                               minlength="6"
+                               autocomplete="new-password"
+                               inputmode="text"
+                               required>
+                        <small class="text-muted">Usa una contraseña segura (mínimo 6 caracteres)</small>
+                    </div>
+
+                    <div class="divider my-4"></div>
+
+                    <!-- Términos y condiciones -->
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" 
+                               type="checkbox" 
+                               id="terminos"
+                               required>
+                        <label class="form-check-label small" for="terminos">
+                            Acepto que mis publicaciones serán públicas y que proporcionaré información veraz
+                        </label>
+                    </div>
+
+                    <!-- Botón registrarse -->
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="fas fa-user-plus"></i> Crear mi Cuenta
+                        </button>
+                    </div>
+                </form>
+
+                <div class="divider my-4"></div>
+
+                <!-- Link a login -->
+                <div class="text-center">
+                    <p class="text-muted mb-2">¿Ya tienes cuenta?</p>
+                    <a href="{{ url_for('main.login') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-sign-in-alt"></i> Inicia Sesión Aquí
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Beneficios de registrarse -->
+        <div class="card shadow-sm mt-4">
+            <div class="card-body">
+                <h5 class="card-title text-center mb-3">
+                    <i class="fas fa-star text-warning"></i> Beneficios de unirte
+                </h5>
+                <div class="row text-center">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <i class="fas fa-bullhorn fa-2x text-primary mb-2"></i>
+                        <p class="small mb-0"><strong>Publica problemas</strong></p>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <i class="fas fa-users fa-2x text-success mb-2"></i>
+                        <p class="small mb-0"><strong>Conecta con tu comunidad</strong></p>
+                    </div>
+                    <div class="col-md-4">
+                        <i class="fas fa-hands-helping fa-2x text-danger mb-2"></i>
+                        <p class="small mb-0"><strong>Ayuda a otros</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
